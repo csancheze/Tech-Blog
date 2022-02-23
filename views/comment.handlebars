@@ -1,0 +1,14 @@
+<div>
+    <div>
+        <div>
+        <h2>{{post.title}}</h2> <span>Posted by {{user.name}} on {{format_date date_created}}</span>
+        </div>
+        <form>
+            <label>Comment:</label>
+            <textarea id="update-comment" name="update-comment">{{content}}</textarea>
+            <button type="submit" class="btn btn-primary">Update Comment</button>
+        </form>
+        <button id="delete">Delete</button>
+    </div>
+</div>
+<script src="/js/comment.js"></script>

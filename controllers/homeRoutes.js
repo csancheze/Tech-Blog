@@ -16,7 +16,7 @@ router.get('/', async (req,res) => {
         const post = postData.map((post)=>post.get({plain:true}));
 
         res.render('homepage', {
-            projects,
+            post,
             logged_in: req.session.logged_in
         })
         
@@ -33,14 +33,47 @@ router.get('/post/:id', async (req,res) => {
                     model: User,
                     attributes: ['name'],
                 },
+                { model: Comment,
+                },
+            ],
+        });
+
+        const post = postData.get({plain:true});
+        const same = false;
+
+        if (req.session.user_id == post.user.id){
+            same = true;
+        }
+
+        res.render('post', {
+            ...post,
+            logged_in: req.session.logged_in,
+            user_id: req.session.user_id,
+            poster: same
+        });
+        
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+router.get('/post_edit/:id', withAuth, async (req,res) => {
+    try {
+        const postData = await Post.findByPk(req.params.id, {
+            include: [
+                {
+                    model: User,
+                    attributes: ['name'],
+                },
             ],
         });
 
         const post = postData.get({plain:true})
 
-        res.render('post', {
+        res.render('post_edit', {
             ...post,
-            logged_in: req.session.logged_in
+            logged_in: req.session.logged_in,
+            user_id: req.session.user_id
         });
         
     } catch (err) {
@@ -67,7 +100,8 @@ router.get('/comment/:id', async (req,res) => {
 
         res.render('comment', {
             ...comment,
-            logged_in: req.session.logged_in
+            logged_in: req.session.logged_in,
+            user_id: req.session.user_id
         });
         
     } catch (err) {
@@ -75,7 +109,7 @@ router.get('/comment/:id', async (req,res) => {
     }
 });
 
-router.get('/profile', withAuth, async (req, res) => {
+router.get('/dashboard', withAuth, async (req, res) => {
     try {
 
       const userData = await User.findByPk(req.session.user_id, {
@@ -85,7 +119,7 @@ router.get('/profile', withAuth, async (req, res) => {
   
       const user = userData.get({ plain: true });
   
-      res.render('profile', {
+      res.render('dashboard', {
         ...user,
         logged_in: true
       });
@@ -97,7 +131,7 @@ router.get('/profile', withAuth, async (req, res) => {
   
 router.get('/login', (req, res) => {
     if (req.session.logged_in) {
-      res.redirect('/profile');
+      res.redirect('/');
       return;
     }
   
