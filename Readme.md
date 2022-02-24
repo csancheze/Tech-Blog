@@ -18,17 +18,19 @@ Tech Blog is a CMS-style blog site that can be used to publish articles, posts, 
   ## Installation
   
   
-Enter the link https://serene-fortress-93991.herokuapp.com/
+- Enter the link https://serene-fortress-93991.herokuapp.com/
 
   
   ## Usage
   
   
-Follow installation instructions. - Create sign up. -Enjoy
+- Follow installation instructions. 
+- Create sign up. 
+- Enjoy
 
   
   
-![Tech Blog webpage working as expected](assets/images/screenshot.png)
+![Tech Blog webpage working as expected](assets/screenshot.png)
   
   ## License
   
@@ -57,9 +59,7 @@ Enter the link https://serene-fortress-93991.herokuapp.com/ -Sign up -Enter new 
   
   If you have any question feel free to check my Github 
   
-Username:csancheze
-  
-[Github](https://github.com/csancheze)
+Username:[csancheze](https://github.com/csancheze)
 
   or send me and email
   
