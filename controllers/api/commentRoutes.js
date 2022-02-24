@@ -19,7 +19,6 @@ router.put('/:id', async (req, res) => {
   try {
     const commentData = await Comment.update({
       content: req.body.content,
-      date_created: req.body.date,
       user_id: req.session.user_id,
     },
     {

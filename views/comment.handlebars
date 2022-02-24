@@ -6,9 +6,9 @@
         <form id="comment-update-form">
             <label>Comment:</label>
             <textarea id="update-comment" name="update-comment">{{content}}</textarea>
-            <button type="submit" class="btn btn-primary">Update Comment</button>
+            <button type="submit" data-id="{{id}}" class="btn btn-primary">Update Comment</button>
         </form>
-        <button id="delete">Delete</button>
+        <button data-id="{{id}}" id="delete">Delete</button>
     </div>
 </div>
 <script src="/js/comment.js"></script>
