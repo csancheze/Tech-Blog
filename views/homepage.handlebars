@@ -1,10 +1,11 @@
+
 {{#each posts as |post|}}
 
-<div>
-    <h2>
-        <a href="posts/{{post.id}}">{{post.title}}</a> <span>{{post.user.name}} on {{format_date post.date_created}}</span>
+<div class="p-0 w-100">
+    <h2 class=" bg-secondary  m-0 " style="display:flex; justify-content:space-between">
+        <a class="display-6 p-2 text-light" href="posts/{{post.id}}">{{post.title}}</a> <small class="text-dark">{{post.user.name}} on {{format_date post.date_created}}</small>
     </h2>
-    <p>
+    <p class=" p-3 bg-light text-dark m-0 mb-4">
         {{post.content}}
     </p>
 

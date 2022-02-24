@@ -1,5 +1,5 @@
 const loginFormHandler = async (event) => {
-    event.preventDefault();
+    event.preventDefault(); 
 
     const email=document.querySelector('#email-login').value.trim();
     const password = document.querySelector('#password-login').value.trim();
@@ -11,7 +11,10 @@ const loginFormHandler = async (event) => {
             headers: {'Content-Type': 'application/json'},
         });
         if(response.ok) {
-            document.location.replace(profile);
+            alert('Welcome!')
+            document.location.replace('/dashboard');
+            
+
         } else {
             alert(response.statusText);
         }
@@ -32,7 +35,9 @@ const signupFromHandler = async (event) => {
             headers: {'Content-Type': 'application/json'},
         });
         if (response.ok) {
-            document.location.replace('/profile');
+            alert('Welcome!')
+            document.location.replace('/dashboard');
+            
         } else {
             alert(response.statusText)
         }

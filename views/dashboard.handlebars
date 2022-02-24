@@ -1,6 +1,6 @@
 <div>
   <div>
-    <h2>Welcome, {{name}}!</h2>
+    <h2 class="alert alert-secondary">Welcome, {{name}}!</h2>
   </div>
 </div>
 
@@ -9,27 +9,27 @@
     <h3>Create a New Post</h3>
 
     <form class="new-post-form">
-      <div >
-        <label for="post-title">Post title:</label>
-        <input  type="text" id="post-title" name="post-title"/>
+      <div class="mb-3 mt-3">
+        <label for="post-title" class="form-label">Post title:</label>
+        <input class="form-control" type="text" id="post-title" name="post-title"/>
       </div>
       <div>
-        <label for="post-content">Content:</label>
-        <textarea id="post-content" name="post-content"></textarea>
+        <label class="form-label" for="post-content">Content:</label>
+        <textarea class="form-control" id="post-content" name="post-content"></textarea>
       </div>
       <div>
-        <button type="submit">Post it!</button>
+        <button class="mt-4 btn btn-secondary" type="submit">Post it!</button>
       </div>
     </form>
   </div>
 
   {{#if posts.length}}
-  <div class= "post-list">
+  <div class= "post-list pt-5" >
     <h3>{{name}}'s Posts:</h3>
 
     {{#each posts as |post|}}
-      <div>
-        <a href="/posts/{{post.id}}"><h4>{{post.title}}</h4><span>{{format_date post.date_created}}</span></a>
+      <div class="bg-secondary mt-2" style="display:flex; justify-content:space-between ; border-radius: 5pt">
+        <a class="p-3" href="/post_edit/{{post.id}}"><h4>{{post.title}}</h4></a><span class="p-2">{{format_date post.date_created}}</span>
       </div>
     {{/each}}
   </div>

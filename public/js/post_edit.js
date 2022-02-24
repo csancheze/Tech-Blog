@@ -5,7 +5,9 @@ const newFormHandler = async (event) => {
 
     const title = document.querySelector('#post-title').value.trim();
     const content = document.querySelector('#update-post').value.trim();
-
+        if (title == ""){
+          alert('Write an updated title')
+        }
   
         if (title && content) {
         const response = await fetch(`/api/posts/${id}`, {
@@ -15,9 +17,11 @@ const newFormHandler = async (event) => {
             'Content-Type': 'application/json',
             },
         });
+
     
         if (response.ok) {
-            document.location.replace('/dashboard');
+          alert('Your post was updated')
+          window.location = document.referrer
         } else {
             alert('Failed to create post');
         }
@@ -35,7 +39,8 @@ const newFormHandler = async (event) => {
       });
   
       if (response.ok) {
-        document.location.replace('/dashboard');
+        alert('Your post was deleted')
+            window.location = document.referrer
       } else {
         alert('Failed to delete project');
       }

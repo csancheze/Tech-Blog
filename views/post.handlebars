@@ -1,33 +1,32 @@
 <div>
     <div>
-        <div>
-        <h2 id="post" data-id="{{id}}">{{title}}</h2> <span>Posted by {{user.name}} on {{format_date date_created}}</span>
+        <div class="bg-secondary mt-2" style="display:flex; justify-content:space-between">
+        <h2  class="p-3" id="post" data-id="{{id}}">{{title}}</h2> <span  class="p-2">Posted by {{user.name}} on {{format_date date_created}}</span>
         </div>
-
-        <p>{{content}}</p>
+        <p class=" p-3 bg-light text-dark m-0 mb-4">{{content}}</p>
     </div>
     {{#if logged_in}}
     <div>
         <form id="comment-form">
-            <label>Comment here:</label>
-            <textarea id="post-comment" name="post-comment"></textarea>
-            <button type="submit" class="btn btn-primary">Post Comment</button>
-         </div>
+            <div  class="mb-3 mt-3"> 
+            <label for="post-comment" class="form-label">Comment here:</label>
+            <textarea class="form-control" id="post-comment" name="post-comment"></textarea>
+            <button class="mt-4 btn btn-secondary" type="submit" class="btn btn-primary">Post Comment</button>
+            </div>
         </form>
     </div>
     {{/if}}
     {{#if comments.length}}
     {{#each comments as |comment|}}
     <div>
-        <div>Commented by {{comment.user.name}} on {{format_date comment.date_created}}</div>
-        <div>
-            {{#if poster }}
+        
+        <div class="bg-secondary mt-2" style="display:flex; justify-content:space-between; border-radius: 5pt">
+            
             <a href="/comments/{{comment.id}}">
-            <p>{{comment.content}}</p></a>
-            {{else}}
-            <p>{{comment.content}}</p>
-            {{/if}}
+            <p class="p-3" style="font-size:medium">{{comment.content}}</p></a>
+            <span  class="text-dark p-2">Commented by {{comment.user.name}} on {{format_date comment.date_created}}</span>
         </div>
+
     </div>
     {{/each}}
     {{/if}}

@@ -20,6 +20,8 @@ const newFormHandler = async (event) => {
       } else {
         alert('Failed to create post');
       }
+    } else {
+      alert('Write something!')
     }
   };
   

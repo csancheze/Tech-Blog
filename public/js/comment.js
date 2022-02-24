@@ -8,7 +8,7 @@ const newFormHandler = async (event) => {
         if (content) {
         const response = await fetch(`/api/comments/${id}`, {
             method: 'PUT',
-            body: JSON.stringify({ content}),
+            body: JSON.stringify({content}),
             headers: {
             'Content-Type': 'application/json',
             },
@@ -16,6 +16,7 @@ const newFormHandler = async (event) => {
     
         if (response.ok) {
             alert('Your comment was updated')
+            window.location = document.referrer
         } else {
             alert('Failed to update comment');
         }
@@ -33,6 +34,7 @@ const newFormHandler = async (event) => {
   
       if (response.ok) {
         alert('Your comment was deleted')
+        window.location = document.referrer
       } else {
         alert('Failed to delete comment');
       }

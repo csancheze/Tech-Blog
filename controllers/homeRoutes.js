@@ -8,15 +8,15 @@ router.get('/', async (req,res) => {
             include: [
                 {
                     model: User,
-                    attributes:['name']
+                    attributes:['name'],
                 },
             ],
         });
 
-        const post = postData.map((post)=>post.get({plain:true}));
+        const posts = postData.map((post)=>post.get({plain:true}));
 
         res.render('homepage', {
-            post,
+            posts,
             logged_in: req.session.logged_in
         })
         
@@ -25,7 +25,7 @@ router.get('/', async (req,res) => {
     }
 });
 
-router.get('/post/:id', async (req,res) => {
+router.get('/posts/:id', async (req,res) => {
     try {
         const postData = await Post.findByPk(req.params.id, {
             include: [
@@ -34,22 +34,22 @@ router.get('/post/:id', async (req,res) => {
                     attributes: ['name'],
                 },
                 { model: Comment,
+                    include: [
+                        {
+                            model: User,
+                            attributes:['name']
+                        }
+                    ],
                 },
             ],
         });
 
         const post = postData.get({plain:true});
-        const same = false;
-
-        if (req.session.user_id == post.user.id){
-            same = true;
-        }
 
         res.render('post', {
             ...post,
             logged_in: req.session.logged_in,
             user_id: req.session.user_id,
-            poster: same
         });
         
     } catch (err) {
@@ -81,7 +81,7 @@ router.get('/post_edit/:id', withAuth, async (req,res) => {
     }
 });
 
-router.get('/comment/:id', async (req,res) => {
+router.get('/comments/:id',withAuth, async (req,res) => {
     try {
         const commentData = await Comment.findByPk(req.params.id, {
             include: [
@@ -92,7 +92,7 @@ router.get('/comment/:id', async (req,res) => {
                 {
                     model: Post,
                     attributes: ['title']
-                }
+                },
             ],
         });
 
@@ -131,7 +131,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
   
 router.get('/login', (req, res) => {
     if (req.session.logged_in) {
-      res.redirect('/');
+      res.redirect('/dashboard');
       return;
     }
   
