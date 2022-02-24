@@ -52,7 +52,9 @@ Add search functionality
   ## Tests
   
   
-Enter the link https://serene-fortress-93991.herokuapp.com/ -Sign up -Enter new posts and comments to test the functionality.
+- Enter the link https://serene-fortress-93991.herokuapp.com/ 
+- Sign up 
+- Enter new posts and comments to test the functionality.
 
   
   ## Questions
