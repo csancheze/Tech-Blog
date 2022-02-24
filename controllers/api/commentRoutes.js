@@ -15,7 +15,7 @@ router.post('/', withAuth, async (req, res) => {
   }
 });
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', withAuth, async (req, res) => {
   try {
     const commentData = await Comment.update({
       content: req.body.content,
